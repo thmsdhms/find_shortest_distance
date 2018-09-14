@@ -16,6 +16,10 @@ def find_shortest_distance(a, b, s):
     >>> find_shortest_distance('foo', 'bar', '') is None
     True
 
+    Search is case-insensitive:
+    >>> find_shortest_distance('Foo', 'bar', 'foo Bar')
+    0
+
     Distance between identical arguments expects multiple occurences:
     >>> find_shortest_distance('foo', 'foo', 'foo') is None
     True
@@ -49,7 +53,8 @@ def find_shortest_distance(a, b, s):
     ...     find_shortest_distance('he', 'a', f.read())
     1
     """
-    words = s.split()
+    words = s.lower().split()
+    a, b = a.lower(), b.lower()
     a_indices = [ i for i, word in enumerate(words) if word == a ]
     b_indices = [ i for i, word in enumerate(words) if word == b ]
     distances = [ abs(x - y) - 1 for x in a_indices for y in b_indices if abs(x - y) > 0 ]
