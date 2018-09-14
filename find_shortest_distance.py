@@ -52,6 +52,10 @@ def find_shortest_distance(a, b, s):
     >>> with open('kafka.txt', 'r') as f:
     ...     find_shortest_distance('he', 'a', f.read())
     1
+
+    Search strings including spaces are not supported:
+    >>> find_shortest_distance('foo foo', 'bar', 'foo foo bar') is None
+    True
     """
     words = s.lower().split()
     a, b = a.lower(), b.lower()
