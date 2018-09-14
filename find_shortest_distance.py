@@ -53,16 +53,12 @@ def find_shortest_distance(a, b, s):
     ...     find_shortest_distance('he', 'a', f.read())
     1
     """
+    words = s.lower().split()
     a, b = a.lower(), b.lower()
-    min_distance, last_match, last_index = None, None, None
-    for i, word in enumerate(s.lower().split()):
-        if word in (a, b):
-            if last_match and (word != last_match or a == b):
-                distance = i - last_index - 1
-                min_distance = min(distance, min_distance) if min_distance else distance
-            last_index = i
-            last_match = word
-    return min_distance
+    a_indices = [ i for i, word in enumerate(words) if word == a ]
+    b_indices = [ i for i, word in enumerate(words) if word == b ]
+    distances = [ abs(x - y) - 1 for x in a_indices for y in b_indices if abs(x - y) > 0 ]
+    return min(distances) if distances else None
 
 if __name__ == '__main__':
     import sys
