@@ -43,6 +43,11 @@ def find_shortest_distance(a, b, s):
     The shortest distance need not be the first distance:
     >>> find_shortest_distance('foo', 'bar', 'foo word bar foo')
     0
+
+    Long texts are handled well:
+    >>> with open('kafka.txt', 'r') as f:
+    ...     find_shortest_distance('he', 'a', f.read())
+    1
     """
     words = s.split()
     a_indices = [ i for i, word in enumerate(words) if word == a ]
