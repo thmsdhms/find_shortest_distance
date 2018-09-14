@@ -63,3 +63,11 @@ def find_shortest_distance(a, b, s):
             last_index = i
             last_match = word
     return min_distance
+
+if __name__ == '__main__':
+    import sys
+
+    if (len(sys.argv) != 3):
+        print("usage: {} string1 string2".format(sys.argv[0]))
+        exit(1)
+    print(find_shortest_distance(sys.argv[1], sys.argv[2], sys.stdin.read()))
